@@ -21,8 +21,17 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/orangekame3/darkmode/cmd"
+import (
+	"time"
+
+	"github.com/orangekame3/darkmode/cmd"
+)
+
+var (
+	version = "0.0.2"
+)
 
 func main() {
+	cmd.SetVersionInfo(version, time.Now().String())
 	cmd.Execute()
 }

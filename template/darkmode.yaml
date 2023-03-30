@@ -1,3 +1,5 @@
 desktop:
-  environment: gnome
-#  environment: windows
+  environment: windows
+#  environment: gnome
+#  environment: kde
+#  environment: xfce
