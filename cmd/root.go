@@ -78,3 +78,7 @@ func initConfig() {
 		}
 	}
 }
+
+func SetVersionInfo(version, date string) {
+	rootCmd.Version = fmt.Sprintf("%s (Built on %s)", version, date)
+}

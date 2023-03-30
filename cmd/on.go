@@ -55,7 +55,7 @@ func switchToDarkMode() error {
 	default:
 		return errors.New("unsupported desktop environment: " + desktopEnv)
 	}
-	return errors.New("unsupported desktop environment: " + desktopEnv)
+	return nil
 }
 
 func init() {
