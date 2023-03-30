@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/spf13/darkmode/cmd"
+import "github.com/orangekame3/darkmode/cmd"
 
 func main() {
 	cmd.Execute()
