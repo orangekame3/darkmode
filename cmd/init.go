@@ -30,6 +30,19 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		env, _ := cmd.Flags().GetString("env")
+		switch env {
+		case "windows":
+			defaultConfig = fmt.Sprintf(defaultConfig, "windows")
+		case "gnome":
+			defaultConfig = fmt.Sprintf(defaultConfig, "gnome")
+		case "kde":
+			defaultConfig = fmt.Sprintf(defaultConfig, "kde")
+		case "xfce":
+			defaultConfig = fmt.Sprintf(defaultConfig, "xfce")
+		default:
+			fmt.Println("Invalid environment specified:", env)
+			return
+		}
 		if _, err := os.Stat(configFile); os.IsNotExist(err) {
 			os.MkdirAll(filepath.Dir(configFile), 0700)
 			f, err := os.Create(configFile)
@@ -39,27 +52,23 @@ to quickly create a Cobra application.`,
 			}
 			defer f.Close()
 
-			switch env {
-			case "windows":
-				defaultConfig = fmt.Sprintf(defaultConfig, "windows")
-			case "gnome":
-				defaultConfig = fmt.Sprintf(defaultConfig, "gnome")
-			case "kde":
-				defaultConfig = fmt.Sprintf(defaultConfig, "kde")
-			case "xfce":
-				defaultConfig = fmt.Sprintf(defaultConfig, "xfce")
-			default:
-				fmt.Println("Invalid environment specified:", env)
-				return
-			}
-
 			if _, err := f.WriteString(defaultConfig); err != nil {
 				fmt.Println(err)
 				return
 			}
 			fmt.Println("Config file created:", configFile)
 		} else {
-			fmt.Println("Config file already exists:", configFile)
+			f, err := os.OpenFile(configFile, os.O_RDWR, 0644)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			defer f.Close()
+			if _, err := f.Write([]byte(defaultConfig)); err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println("Config file updated:", configFile)
 		}
 	},
 }
