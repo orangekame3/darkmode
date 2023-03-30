@@ -1,5 +1,12 @@
 # darkmode
 
+## Installation
+
+Run following command.
+
+```shell
+go install github.com/orangekame3/darkmode@latest
+```
 
 ## Usage 
 
