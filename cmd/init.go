@@ -12,8 +12,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var defaultConfig = `
-desktop:
+var defaultConfig = `desktop:
   environment: windows
 #  environment: gnome
 #  environment: kde
