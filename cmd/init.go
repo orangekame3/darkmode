@@ -13,10 +13,7 @@ import (
 )
 
 var defaultConfig = `desktop:
-  environment: windows
-#  environment: gnome
-#  environment: kde
-#  environment: xfce
+  environment: %s
 `
 
 var configFile = filepath.Join(configDir(), "darkmode.yaml")
@@ -32,6 +29,7 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
+		env, _ := cmd.Flags().GetString("env")
 		if _, err := os.Stat(configFile); os.IsNotExist(err) {
 			os.MkdirAll(filepath.Dir(configFile), 0700)
 			f, err := os.Create(configFile)
@@ -40,6 +38,20 @@ to quickly create a Cobra application.`,
 				return
 			}
 			defer f.Close()
+
+			switch env {
+			case "windows":
+				defaultConfig = fmt.Sprintf(defaultConfig, "windows")
+			case "gnome":
+				defaultConfig = fmt.Sprintf(defaultConfig, "gnome")
+			case "kde":
+				defaultConfig = fmt.Sprintf(defaultConfig, "kde")
+			case "xfce":
+				defaultConfig = fmt.Sprintf(defaultConfig, "xfce")
+			default:
+				fmt.Println("Invalid environment specified:", env)
+				return
+			}
 
 			if _, err := f.WriteString(defaultConfig); err != nil {
 				fmt.Println(err)
@@ -62,14 +74,5 @@ func configDir() string {
 
 func init() {
 	rootCmd.AddCommand(initCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// initCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// initCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	initCmd.Flags().StringP("env", "e", "windows", "set your platform (windows/gnome/kde/xfce)")
 }

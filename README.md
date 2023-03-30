@@ -13,7 +13,7 @@ go install github.com/orangekame3/darkmode@latest
 First, run the following command to generate a configuration file.
 
 ```shell
-darkmode init
+darkmode init --env windows
 ```
 
 The following file is generated when the command is executed. Please disable the appropriate platform comment-outs.
@@ -21,8 +21,5 @@ The following file is generated when the command is executed. Please disable the
 ```yaml:darkmode.yaml
 desktop:
   environment: windows
-#  environment: gnome
-#  environment: kde
-#  environment: xfce
 
 ```
