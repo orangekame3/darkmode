@@ -58,13 +58,16 @@ to quickly create a Cobra application.`,
 			}
 			fmt.Println("Config file created:", configFile)
 		} else {
-			f, err := os.OpenFile(configFile, os.O_RDWR, 0644)
+			os.Remove(configFile)
+			os.MkdirAll(filepath.Dir(configFile), 0700)
+			f, err := os.Create(configFile)
 			if err != nil {
 				fmt.Println(err)
 				return
 			}
 			defer f.Close()
-			if _, err := f.Write([]byte(defaultConfig)); err != nil {
+
+			if _, err := f.WriteString(defaultConfig); err != nil {
 				fmt.Println(err)
 				return
 			}
