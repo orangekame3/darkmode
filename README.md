@@ -21,5 +21,22 @@ The following file is generated when the command is executed. Please disable the
 ```yaml:darkmode.yaml
 desktop:
   environment: windows
+  dark-theme: none
+  light-theme: none
+```
 
+
+If you using gnome-desktop, run the following command.
+
+```shell
+darkmode init --env gnome
+```
+
+The following file is generated when the command is executed. Please disable the appropriate platform comment-outs.
+
+```yaml:darkmode.yaml
+desktop:
+  environment: gnome
+  dark-theme: Adwaita-dark
+  light-theme: Adwaita
 ```
