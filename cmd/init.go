@@ -20,7 +20,7 @@ desktop:
 #  environment: xfce
 `
 
-var configFile = filepath.Join(configDir(), ".darkmode.yaml")
+var configFile = filepath.Join(configDir(), "darkmode.yaml")
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{

@@ -2,10 +2,14 @@
 
 
 ## Usage 
-Create a configuration file in the `$Home/.config/darkmode/.darkmode.yaml`
 
+First, run the following command to generate a configuration file.
 
-.darkmode.yamlの内容は以下のように定義してください
+```shell
+darkmode init
+```
+
+The following file is generated when the command is executed. Please disable the appropriate platform comment-outs.
 
 ```yaml:darkmode.yaml
 desktop:
