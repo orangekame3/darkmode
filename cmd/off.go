@@ -28,6 +28,7 @@ var offCmd = &cobra.Command{
 
 func switchToLightMode() error {
 	desktopEnv := viper.GetString("desktop.environment")
+	offTheme := viper.GetString("desktop.on-theme")
 
 	switch desktopEnv {
 	case "windows":
@@ -37,22 +38,10 @@ func switchToLightMode() error {
 		}
 	case "gnome":
 		cmd := exec.Command("gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "Adwaita")
-		return cmd.Run()
-	case "kde":
-		// Set ColorScheme to Breeze Dark in kdeglobals
-		cmd := exec.Command("kwriteconfig5", "--file", "~/.config/kdeglobals", "--group", "General", "--key", "ColorScheme", "Breeze")
-		if err := cmd.Run(); err != nil {
-			return err
+		if offTheme != "" {
+			cmd = exec.Command("gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", offTheme)
 		}
-
-		// Reconfigure KWin
-		cmd = exec.Command("qdbus", "org.kde.KWin", "/KWin", "reconfigure")
 		return cmd.Run()
-	case "xfce":
-		cmd := exec.Command("xfconf-query", "-c", "xsettings", "-p", "/Net/ThemeName", "-s", "Adwaita")
-		if err := cmd.Run(); err != nil {
-			return err
-		}
 	default:
 		return errors.New("unsupported desktop environment: " + desktopEnv)
 	}

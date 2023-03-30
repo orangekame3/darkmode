@@ -14,6 +14,8 @@ import (
 
 var defaultConfig = `desktop:
   environment: %s
+  on-theme: %s
+  off-theme: %s
 `
 
 var configFile = filepath.Join(configDir(), "darkmode.yaml")
@@ -30,15 +32,13 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		env, _ := cmd.Flags().GetString("env")
+		onTheme, _ := cmd.Flags().GetString("on-theme")
+		offTheme, _ := cmd.Flags().GetString("on-theme")
 		switch env {
 		case "windows":
-			defaultConfig = fmt.Sprintf(defaultConfig, "windows")
+			defaultConfig = fmt.Sprintf(defaultConfig, "windows", "", "")
 		case "gnome":
-			defaultConfig = fmt.Sprintf(defaultConfig, "gnome")
-		case "kde":
-			defaultConfig = fmt.Sprintf(defaultConfig, "kde")
-		case "xfce":
-			defaultConfig = fmt.Sprintf(defaultConfig, "xfce")
+			defaultConfig = fmt.Sprintf(defaultConfig, "gnome", onTheme, offTheme)
 		default:
 			fmt.Println("Invalid environment specified:", env)
 			return
@@ -86,5 +86,7 @@ func configDir() string {
 
 func init() {
 	rootCmd.AddCommand(initCmd)
-	initCmd.Flags().StringP("env", "e", "windows", "set your platform (windows/gnome/kde/xfce)")
+	initCmd.Flags().StringP("env", "e", "windows", "set your platform (windows/gnome)")
+	initCmd.Flags().StringP("on-theme", "on", "", "set theme")
+	initCmd.Flags().StringP("off-theme", "off", "", "set theme")
 }
