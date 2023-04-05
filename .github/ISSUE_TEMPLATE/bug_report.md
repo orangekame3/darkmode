@@ -1,33 +1,38 @@
 ---
-name: "\U0001F41B Bug report"
-about: "Create a report to help us improve \U0001F914."
+name: Bug report
+about: Create a report to help us improve
 title: ''
-labels: bug
+labels: ''
 assignees: ''
 
 ---
 
-<!-- ⚠️ If you do not respect this template, your issue will be closed -->
-<!-- ⚠️ Make sure to browse the opened and closed issues -->
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-### Informations
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-- **darkmode version**:
-- **Go version**:
-- **Operating system**:
+**Expected behavior**
+A clear and concise description of what you expected to happen.
 
-### What is the current behavior?
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
 
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
 
+**Smartphone (please complete the following information):**
+ - Device: [e.g. iPhone6]
+ - OS: [e.g. iOS8.1]
+ - Browser [e.g. stock browser, safari]
+ - Version [e.g. 22]
 
-### Steps to reproduce the problem
-
-
-
-### What is the expected behavior?
-
-
-
-### Suggested solutions
-
-
+**Additional context**
+Add any other context about the problem here.
