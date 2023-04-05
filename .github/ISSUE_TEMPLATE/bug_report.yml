@@ -1,6 +1,5 @@
-name: \U0001F41B Bug Report
-description: Create a report to help us improve \U0001F914.
-title: "[\U0001F41B Bug]: "
+name: 🐛Bug Report
+description: Create a report to help us improve 🤔.
 labels: ["bug"]
 body:
   - type: markdown
